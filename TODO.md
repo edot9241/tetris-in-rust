@@ -1,5 +1,5 @@
 ## misc
-- create a window with bevy
+- create a window with bevy.
 ## game logic
 ### game grid
 - x, y boundaries for the playable area 
