@@ -12,6 +12,7 @@ fn main() {
                 primary_window: Some(Window {
                     title: "Tetris".into(),
                     name: Some("bevy.app".into()),
+                    //Placeholder resolution
                     resolution: (500., 300.).into(),
                     present_mode: PresentMode::AutoVsync,
                     resizable: false,
@@ -19,6 +20,7 @@ fn main() {
                     prevent_default_event_handling: false,
                     window_theme: Some(WindowTheme::Dark),
                     window_level: WindowLevel::Normal,
+                    //Temporary options until game menu functionality added.
                     titlebar_shown: true,
                     titlebar_show_title: true,
                     enabled_buttons: bevy::window::EnabledButtons {
@@ -33,6 +35,8 @@ fn main() {
             }),
             LogDiagnosticsPlugin::default(),
             FrameTimeDiagnosticsPlugin,
+            //TODO: set a limiter!
+            bevy_framepace::FramepacePlugin,
         ))
         .add_systems(Update, make_visible)
         .run();
