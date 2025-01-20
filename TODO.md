@@ -8,7 +8,7 @@
 - check for colision
 - check for input (rotation, x axis, y axis advance speed)
 - advance y value of the tetromino by -1
-- fill grid
+- fill grid squares when the tetromino becomes inactive 
 - clear row when full
 - tally up the score
 ### display
