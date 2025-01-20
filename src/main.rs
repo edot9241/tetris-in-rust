@@ -19,10 +19,12 @@ fn main() {
                     prevent_default_event_handling: false,
                     window_theme: Some(WindowTheme::Dark),
                     window_level: WindowLevel::Normal,
+                    titlebar_shown: true,
+                    titlebar_show_title: true,
                     enabled_buttons: bevy::window::EnabledButtons {
                         maximize: false,
                         minimize: false,
-                        ..Default::default()
+                        close: true,
                     },
                     visible: false,
                     ..Default::default()
