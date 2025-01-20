@@ -18,6 +18,7 @@ fn main() {
                     fit_canvas_to_parent: true,
                     prevent_default_event_handling: false,
                     window_theme: Some(WindowTheme::Dark),
+                    window_level: WindowLevel::Normal,
                     enabled_buttons: bevy::window::EnabledButtons {
                         maximize: false,
                         minimize: false,
@@ -31,23 +32,12 @@ fn main() {
             LogDiagnosticsPlugin::default(),
             FrameTimeDiagnosticsPlugin,
         ))
-        .add_systems(Update, (switch_level, make_visible))
+        .add_systems(Update, make_visible)
         .run();
 }
 
 fn make_visible(mut window: Single<&mut Window>, frames: Res<FrameCount>) {
     if frames.0 == 3 {
         window.visible = true;
-    }
-}
-
-fn switch_level(input: Res<ButtonInput<KeyCode>>, mut window: Single<&mut Window>) {
-    if input.just_pressed(KeyCode::KeyT) {
-        window.window_level = match window.window_level {
-            WindowLevel::AlwaysOnBottom => WindowLevel::Normal,
-            WindowLevel::Normal => WindowLevel::AlwaysOnTop,
-            WindowLevel::AlwaysOnTop => WindowLevel::AlwaysOnBottom,
-        };
-        info!("WINDOW_LEVEL: {:?}", window.window_level);
     }
 }
