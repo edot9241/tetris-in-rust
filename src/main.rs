@@ -36,7 +36,6 @@ fn main() {
             LogDiagnosticsPlugin::default(),
             FrameTimeDiagnosticsPlugin,
             //TODO: set a limiter!
-            bevy_framepace::FramepacePlugin,
         ))
         .add_systems(Update, make_visible)
         .run();
