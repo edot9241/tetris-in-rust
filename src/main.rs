@@ -42,7 +42,7 @@ fn main() {
             AudioPlugin {
                 ..Default::default()
             },
-            //TODO: set a limiter!
+            //TODO: set a frame limiter!
         ))
         .add_systems(Update, make_visible)
         .run();
