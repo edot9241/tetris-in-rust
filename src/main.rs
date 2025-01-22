@@ -1,4 +1,8 @@
+#![allow(dead_code, unused_imports)] //WARN:Remove when no longer necessary!
 use bevy::{
+    asset::*,
+    audio::AudioPlugin,
+    audio::*,
     core::FrameCount,
     diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin},
     prelude::*,
@@ -35,6 +39,9 @@ fn main() {
             }),
             LogDiagnosticsPlugin::default(),
             FrameTimeDiagnosticsPlugin,
+            AudioPlugin {
+                ..Default::default()
+            },
             //TODO: set a limiter!
         ))
         .add_systems(Update, make_visible)
@@ -46,3 +53,26 @@ fn make_visible(mut window: Single<&mut Window>, frames: Res<FrameCount>) {
         window.visible = true;
     }
 }
+// let tetrominoes = [
+//     ('I', "Cyan"),
+//     ('O', "Yellow"),
+//     ('T', "Purple"),
+//     ('S', "Green"),
+//     ('Z', "Red"),
+//     ('J', "Blue"),
+//     ('L', "Orange")
+// ];
+//TODO: Korobeiniki song mandatory, Katyusha and Kalinka optional
+fn play_theme_song() {}
+fn spawn_tetromino() {
+    //The I and O spawn in the middle columns
+    //The rest spawn in the left-middle columns
+    //The tetrominoes spawn horizontally with J, L and T spawning flat-side first.
+}
+fn srs() {
+    //https://harddrop.com/wiki/SRS
+}
+fn hard_drop() {}
+fn soft_drop() {}
+fn hold() {}
+fn ghost() {}
