@@ -1,10 +1,13 @@
 use bevy::{
     asset::*,
-    audio::AudioPlugin,
-    audio::*,
+    audio::{AudioPlugin, *},
     core::FrameCount,
     diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin},
     prelude::*,
+    render::{
+        settings::{Backends, RenderCreation, WgpuSettings},
+        RenderPlugin,
+    },
     window::{PresentMode, WindowLevel, WindowTheme},
 };
 
@@ -39,7 +42,17 @@ pub(super) fn window() {
                 })
                 .set(AudioPlugin {
                     ..Default::default()
-                }),
+                })
+                .set(
+                    // Workaround for amd gpu error spam in the console.
+                    RenderPlugin {
+                        render_creation: RenderCreation::Automatic(WgpuSettings {
+                            backends: Some(Backends::VULKAN),
+                            ..default()
+                        }),
+                        ..default()
+                    },
+                ),
             LogDiagnosticsPlugin::default(),
             FrameTimeDiagnosticsPlugin,
             //TODO: set a frame limiter!
